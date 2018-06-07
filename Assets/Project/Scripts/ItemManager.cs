@@ -4,18 +4,39 @@ using System.Collections;
 
 public class ItemManager : MonoBehaviour {
 
+    #region Singleton
+
+    public static ItemManager instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance found");
+            return;
+        }
+
+        instance = this;
+    }
+
+
+    #endregion
+
+
     public Transform player;
     float playerRadius = 2f;
     public Text descriptionTextField;
     public Text dialogCloud;
     float timer;
-    float timerStartValue = 3f;
+    float timerStartValue = 2f;
+    Item item;
 
     private void Start()
     {
         descriptionTextField.text = "";
         dialogCloud.text = "";
         timer = timerStartValue;
+        
     }
 
     private void Update()
@@ -34,10 +55,11 @@ public class ItemManager : MonoBehaviour {
         {
             if (hit.collider.CompareTag("Item"))
             {
+                item = hit.collider.gameObject.GetComponent<Item>();
 
-                if (hit.collider.gameObject.GetComponent<Item>().isMouseOnItem)
+                if (item.isMouseOnItem)
                 {
-                    descriptionTextField.text = hit.collider.gameObject.GetComponent<Item>().itemTemplate.description;
+                    descriptionTextField.text = item.itemTemplate.description;
                     
 
                     if (Input.GetMouseButtonDown(0))
@@ -47,8 +69,13 @@ public class ItemManager : MonoBehaviour {
 
                         if (distanceToItem <= playerRadius)
                         {
-                            dialogCloud.text = "Picked " + hit.collider.gameObject.GetComponent<Item>().itemTemplate.name;
-                            Destroy(hit.collider.gameObject);
+                            
+                            if (InventorySystem.instance.AddItem(item.itemTemplate))
+                            {
+                                dialogCloud.text = "Picked " + item.itemTemplate.name;
+                                Destroy(hit.collider.gameObject);
+                            }
+
                             ResetTimer();
                         }
 
@@ -103,6 +130,16 @@ public class ItemManager : MonoBehaviour {
     {
         timer = timerStartValue;
     }
+
+    void PickingUpItem ()
+    {
+
+    }
+
+
+
+
+
 
 
     private void OnDrawGizmos()
