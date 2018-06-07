@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour 
@@ -19,18 +20,19 @@ public class PlayerMovement : MonoBehaviour
 	public Vector3 lookPos;//make it private somehow?
 	Animator animator;
 
-	Transform modelTransform;
-    public Transform fakeShoulderPosition;
-    public Transform rightShoulderArmature;
-    GameObject tempRightShoulderPosition;
+
+	//Transform modelTransform;
+ //   public Transform fakeShoulderPosition;
+ //   public Transform rightShoulderArmature;
+ //   GameObject tempRightShoulderPosition;
 
 
 	void Start () 
 	{
 		rb = GetComponent<Rigidbody> ();
 		animator = GetComponent<Animator> ();
-        tempRightShoulderPosition = new GameObject();
-        tempRightShoulderPosition.name = transform.root.name + " rightshoulder IK helper";
+        //tempRightShoulderPosition = new GameObject();
+        //tempRightShoulderPosition.name = transform.root.name + " rightshoulder IK helper";
 	}
 	
 
@@ -75,8 +77,9 @@ public class PlayerMovement : MonoBehaviour
 							// Используем Slerp для плавного изменения вращения между текущим положением и тем, куда мы смотрим
 
 		HandleAnimations (); // Передает значение перемещения в аниматор для изменения соответствующей анимации.
-							 // если мышка находится левее игрока, то все анимации меняются местами (если этого не сделать, то движение вправо всегда будет с анимацией бега,
-							 // даже если в этот момент игрок идет вправо спиной
+                             // если мышка находится левее игрока, то все анимации меняются местами (если этого не сделать, то движение вправо всегда будет с анимацией бега,
+                             // даже если в этот момент игрок идет вправо спиной
+
 	}
 		
 	void HandleAimingPos()
@@ -122,19 +125,19 @@ public class PlayerMovement : MonoBehaviour
 		animator.SetBool ("isSneaking", isSneaking);
 	}
 
-    void HandleShoulder()
-    {
-        fakeShoulderPosition.LookAt(lookPos);
 
-        Vector3 rightShoulderPos = rightShoulderArmature.TransformPoint(Vector3.zero);
-        tempRightShoulderPosition.transform.position = rightShoulderPos;
-        tempRightShoulderPosition.transform.parent = transform;
 
-        fakeShoulderPosition.position = tempRightShoulderPosition.transform.position;
-    }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, lookPos);
-    }
+
+    //void HandleShoulder()
+    //{
+    //    fakeShoulderPosition.LookAt(lookPos);
+
+    //    Vector3 rightShoulderPos = rightShoulderArmature.TransformPoint(Vector3.zero);
+    //    tempRightShoulderPosition.transform.position = rightShoulderPos;
+    //    tempRightShoulderPosition.transform.parent = transform;
+
+    //    fakeShoulderPosition.position = tempRightShoulderPosition.transform.position;
+    //}
+
 }
