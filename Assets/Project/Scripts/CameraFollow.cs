@@ -13,13 +13,13 @@ public class CameraFollow : MonoBehaviour {
 	{
         this.lookPos = playerMovementScript.lookPos;
 
-        if (this.lookPos.x < targetToFollow.transform.position.x && isPlayerFacingRight)
+        if (this.lookPos.x + 1.5 < targetToFollow.transform.position.x && isPlayerFacingRight)
         {
             offset.x = -offset.x;
             isPlayerFacingRight = false;
         }
 
-        else if (this.lookPos.x >= targetToFollow.transform.position.x && !isPlayerFacingRight)
+        else if (this.lookPos.x - 1.5 >= targetToFollow.transform.position.x && !isPlayerFacingRight)
         {
             offset.x = -offset.x;
             isPlayerFacingRight = true;

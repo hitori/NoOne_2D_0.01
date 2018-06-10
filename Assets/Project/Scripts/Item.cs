@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class Item : MonoBehaviour {
 
@@ -8,12 +7,12 @@ public class Item : MonoBehaviour {
     [HideInInspector]
     public bool isMouseOnItem = false;
 
-    private void OnMouseEnter()
+    private void OnMouseEnter() // Если курсор мыши на предмете, то isMouseOnItem = true. Используется в скрипте ItemManager для контроля наведения курсора на айтем
     {
         isMouseOnItem = true;
     }
 
-    private void OnMouseExit()
+    private void OnMouseExit() // Если курсор мыши вышел за границы предмета, то isMouseOnItem = false
     {
         isMouseOnItem = false;
     }

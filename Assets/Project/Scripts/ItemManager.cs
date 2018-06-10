@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class ItemManager : MonoBehaviour {
 
@@ -36,52 +35,52 @@ public class ItemManager : MonoBehaviour {
         descriptionTextField.text = "";
         dialogCloud.text = "";
         timer = timerStartValue;
-        
     }
 
     private void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Пускает луч из камеры в точку нахождения мыши (!!если камера будет перспективной, то обзательно доработать это место!!)
         RaycastHit hit;
-        Vector3 playerPositionOnScreen = Camera.main.WorldToScreenPoint(player.position + Vector3.up * 2.5f);
-        dialogCloud.transform.position = Vector3.Lerp(dialogCloud.transform.position, playerPositionOnScreen, Time.deltaTime * 20f);
+        Vector3 playerPositionOnScreen = Camera.main.WorldToScreenPoint(player.position + Vector3.up * 2.5f);// Вычисляет позицию игрока в координатах экрана
+        dialogCloud.transform.position = Vector3.Lerp(dialogCloud.transform.position, playerPositionOnScreen, Time.deltaTime * 20f);// Прикрепляет облако диалога к позиции Игрока
 
         
-        timer -= Time.deltaTime;
+        timer -= Time.deltaTime; // Таймер ведет отсчет от стартового значения до нуля
         if (timer < 0)
             timer = 0;
 
-        if (Physics.Raycast(ray, out hit))
+       
+
+        if (Physics.Raycast(ray, out hit)) // Если луч попал в какой-либо коллайдер
         {
-            if (hit.collider.CompareTag("Item"))
+            if (hit.collider.CompareTag("Item")) // Если луч попал в коллайдер с тэгом Item
             {
-                item = hit.collider.gameObject.GetComponent<Item>();
+                item = hit.collider.gameObject.GetComponent<Item>(); // кэшируем айтем, в который попали
 
-                if (item.isMouseOnItem)
+                if (item.isMouseOnItem) // идет ссылка на скрипт Item. Правда если мышь наведена на айтем
                 {
-                    descriptionTextField.text = item.itemTemplate.description;
+                    descriptionTextField.text = item.itemTemplate.description; // Поле описания заполняется информацией из параметров конкретного айтема
                     
-
                     if (Input.GetMouseButtonDown(0))
                     {
-                        float distanceToItem = Vector3.Distance(hit.point, player.position + Vector3.up);
+                        float distanceToItem = Vector3.Distance(hit.point, player.position + Vector3.up); // Расчитывает расстояние от Игрока до указателя мышки
                         
 
-                        if (distanceToItem <= playerRadius)
+                        if (distanceToItem <= playerRadius) // Если расстояние до айтема меньше или равно радиусу взаимодействия Игрока
                         {
                             
-                            if (InventorySystem.instance.AddItem(item.itemTemplate))
+                            if (InventorySystem.instance.AddItem(item.itemTemplate)) // Добавляет предмет в инвентарь (не путать с ГУИ)
                             {
                                 dialogCloud.text = "Picked " + item.itemTemplate.name;
                                 Destroy(hit.collider.gameObject);
                             }
 
-                            ResetTimer();
+                            ResetTimer(); // Обновляет таймер на стартовое значение
                         }
 
                         else
                         {
-                            int randomInt = Random.Range(0, 5);
+                            int randomInt = Random.Range(0, 5); // Генерирует рандомное число для разных вариантов диалога
                             switch (randomInt)
                             {
                                 case 0:
@@ -100,7 +99,7 @@ public class ItemManager : MonoBehaviour {
                                     dialogCloud.text = "Nope";
                                     break;
                             }
-                            ResetTimer();
+                            ResetTimer(); // Обновляет таймер на стартовое значение
                         }
                             
                     }
@@ -109,39 +108,41 @@ public class ItemManager : MonoBehaviour {
                 
             }
 
-            else if (descriptionTextField.text != "")
+            else if (timer-1 <= 0 && descriptionTextField.text != "") // Если таймер <= 0 и курсор уходит с предмета, то вызывается функция ClearingDescriptionText() и окно описания очищается
             {
-                descriptionTextField.text = "";
-            }                
+                Debug.Log(descriptionTextField.text);
+                Invoke("ClearingDescriptionText", 0f);
+            }
         }
 
-        if (timer <= 0 && dialogCloud.text != "")
+
+        if (timer <= 0 && dialogCloud.text != "") // Если таймер <= 0 и диалоговое окно не пустое, то вызывается функция ClearingDialogCloud() и окно диалога очищается
         {
             Invoke("ClearingDialogCloud", 0f);
         }
     }
 
+    // Очищает текст в окне описания
+    void ClearingDescriptionText()
+    {
+        descriptionTextField.text = "";
+    }
+
+    // Очищает текст в окне диалога
     void ClearingDialogCloud()
     {
         dialogCloud.text = "";
     }
 
+
+    // Обновляет таймер на стартовое значение
     void ResetTimer()
     {
         timer = timerStartValue;
     }
 
-    void PickingUpItem ()
-    {
 
-    }
-
-
-
-
-
-
-
+    // Показывает радиус взаимодействия вокруг игрока, на каком расстоянии он может брать предметы
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

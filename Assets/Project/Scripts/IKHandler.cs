@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class IKHandler : MonoBehaviour {
 
@@ -11,11 +9,11 @@ public class IKHandler : MonoBehaviour {
     PlayerMovement playerMovementScript;
 
     public float lerpRate = 15f;
-    public float updatelookPosThreshold = 2;
+    public float updatelookPosThreshold = 2; // величина, ограничивающая насколько Игрок нагибается (или поднимает голову вверх), чтобы увидеть курсор мыши
     public float lookWeight = .5f;
     public float bodyWeight = .1f;
     public float headWeight = .8f;
-    public float clampWeight = 1;
+    public float clampWeight = .5f;
 
     //float rightHandWeight = 1;
     //float leftHandWeight = 1;
@@ -51,19 +49,17 @@ public class IKHandler : MonoBehaviour {
         //animator.SetIKHintPosition(AvatarIKHint.RightElbow, rightElbowTarget.position);
         //animator.SetIKHintPosition(AvatarIKHint.LeftElbow, leftElbowTarget.position);
 
-        this.lookPos = playerMovementScript.lookPos;
+        this.lookPos = playerMovementScript.lookPos; // Присваивает значение lookPos значению из скрипта PlayerMovement
 
-        float distanceFromPlayer = Vector3.Distance(lookPos, transform.position);
-        if (distanceFromPlayer > updatelookPosThreshold)
+        float distanceFromPlayer = Vector3.Distance(lookPos, transform.position); //Рассчитывает расстояние от точки lookPos до позиции Игрока
+        if (distanceFromPlayer > updatelookPosThreshold) // Если расстояние больше ограничения, то Игрок свободно смотрит на курсор мыши. Если курсор мыши слишком близко, то то Игрок смотрит в предыдущую точку
         {
-            targetPos = lookPos;
+            targetPos = lookPos; // целевое положение приравнивается к положению мыши
         }
 
-        //Debug.Log(targetPos + " " + lookPos + " " + IK_lookPos);
+        IK_lookPos = Vector3.Lerp(IK_lookPos, targetPos, Time.deltaTime * lerpRate); // Взгляд плавно переходит от текущего положения на новое положение мыши
 
-        IK_lookPos = Vector3.Lerp(IK_lookPos, targetPos, Time.deltaTime * lerpRate);
-
-        animator.SetLookAtWeight(lookWeight, bodyWeight, headWeight, headWeight, clampWeight);
-        animator.SetLookAtPosition(IK_lookPos);
+        animator.SetLookAtWeight(lookWeight, bodyWeight, headWeight, headWeight, clampWeight); // Присваиваем веса различным частям тела, участвующим при слежении за курсором мыши. Чем больше вес, тем сильнее часть тела вовлечена в анимацию просмотра
+        animator.SetLookAtPosition(IK_lookPos); // Включаем функцию прсмотра за курсором мыши
     }
 }

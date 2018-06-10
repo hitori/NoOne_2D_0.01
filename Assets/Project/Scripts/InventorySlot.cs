@@ -1,13 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class InventorySlot : MonoBehaviour {
 
     ItemTemplate item;
     public Image itemIcon;
 
+    
+
+
+    // Добавляем айтем в слот инвентаря (не путать с физическим добавлением предмета в лист айтемов)
     public void AddItemToSlot(ItemTemplate newItem)
     {
         item = newItem;
@@ -16,6 +20,7 @@ public class InventorySlot : MonoBehaviour {
         itemIcon.enabled = true;
     }
 
+    // Очищаем слот от айтема, удаляем иконку
     public void ClearItemFromSlot()
     {
         item = null;
@@ -24,5 +29,20 @@ public class InventorySlot : MonoBehaviour {
         itemIcon.enabled = false;
     }
 
-    
+    // Функция использования предмета. Ссылается на базовую функцию из ItemTemplate
+    public void UseItem()
+    {
+        if (item != null)
+        {
+            item.UseItemMain();
+        }
+    }
+
+    public void RightButtonClick()
+    {
+        if (item != null)
+        {
+            item.RightButtonClickMain();
+        }
+    }
 }

@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.EventSystems;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour 
@@ -38,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update () 
 	{
+        if (EventSystem.current.IsPointerOverGameObject()) // блокирует клики мыши для перемещения игрока, когда включен инвентарь
+        {
+            return;
+        }
+
 		movementAmount = Input.GetAxis ("Horizontal") * movementWalkSpeed;
 
 		if (Input.GetKey (KeyCode.LeftShift) && movementAmount != 0) { // если нажат шифт и игрок движется (перемещение != 0), то включается режим бега
@@ -55,6 +58,11 @@ public class PlayerMovement : MonoBehaviour
 
 	private void FixedUpdate()
 	{
+        if (EventSystem.current.IsPointerOverGameObject()) // блокирует клики мыши для перемещения игрока, когда включен инвентарь
+        {
+            return;
+        }
+
         velocity = rb.velocity;
 
         if (movementAmount < 0)
