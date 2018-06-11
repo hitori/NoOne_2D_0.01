@@ -29,16 +29,19 @@ public class ItemManager : MonoBehaviour {
     float timer;
     float timerStartValue = 2f;
     Item item;
+    int layerMask;
 
     private void Start()
     {
         descriptionTextField.text = "";
         dialogCloud.text = "";
         timer = timerStartValue;
+        layerMask = 1 << LayerMask.NameToLayer("Item");
     }
 
     private void Update()
     {
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); // Пускает луч из камеры в точку нахождения мыши (!!если камера будет перспективной, то обзательно доработать это место!!)
         RaycastHit hit;
         Vector3 playerPositionOnScreen = Camera.main.WorldToScreenPoint(player.position + Vector3.up * 2.5f);// Вычисляет позицию игрока в координатах экрана
@@ -51,7 +54,7 @@ public class ItemManager : MonoBehaviour {
 
        
 
-        if (Physics.Raycast(ray, out hit)) // Если луч попал в какой-либо коллайдер
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) // Если луч попал в какой-либо коллайдер на уровне маски "Item"
         {
             if (hit.collider.CompareTag("Item")) // Если луч попал в коллайдер с тэгом Item
             {
@@ -115,6 +118,11 @@ public class ItemManager : MonoBehaviour {
             }
         }
 
+        else if (timer - 1 <= 0 && descriptionTextField.text != "") // Если таймер <= 0 и курсор уходит с предмета, то вызывается функция ClearingDescriptionText() и окно описания очищается
+        {
+            Debug.Log(descriptionTextField.text);
+            Invoke("ClearingDescriptionText", 0f);
+        }
 
         if (timer <= 0 && dialogCloud.text != "") // Если таймер <= 0 и диалоговое окно не пустое, то вызывается функция ClearingDialogCloud() и окно диалога очищается
         {

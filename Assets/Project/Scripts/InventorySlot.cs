@@ -7,7 +7,8 @@ public class InventorySlot : MonoBehaviour {
 
     ItemTemplate item;
     public Image itemIcon;
-
+    public GameObject rightClickMenu;
+    public RectTransform inventorySlot;
     
 
 
@@ -30,19 +31,44 @@ public class InventorySlot : MonoBehaviour {
     }
 
     // Функция использования предмета. Ссылается на базовую функцию из ItemTemplate
-    public void UseItem()
+    public void LeftButtonClick()
     {
+        rightClickMenu.SetActive(false);
         if (item != null)
         {
-            item.UseItemMain();
+            item.LeftButtonClickMain();
+            rightClickMenu.SetActive(false);
         }
     }
 
     public void RightButtonClick()
     {
+        rightClickMenu.SetActive(false);
         if (item != null)
         {
-            item.RightButtonClickMain();
+            rightClickMenu.SetActive(true);
+            rightClickMenu.transform.position = inventorySlot.position;
         }
+        else
+            rightClickMenu.SetActive(false);
+    }
+
+
+    public void BreakItem()
+    {
+        item.BreakItemMain();
+        rightClickMenu.SetActive(false);
+    }
+
+    public void ViewItem()
+    {
+        item.ViewItemMain();
+        rightClickMenu.SetActive(false);
+    }
+
+    public void DropItem()
+    {
+        item.DropItemMain();
+        rightClickMenu.SetActive(false);
     }
 }
