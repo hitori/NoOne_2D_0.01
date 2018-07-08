@@ -12,11 +12,14 @@ public class PlayerMovement : MonoBehaviour
 	float movementAmount;
 	bool isRunning = false;
 	bool isSneaking = false;
+    bool isFistFight = false;
+    int fistFight;
 
 	Vector2 velocity;
 	Rigidbody rb;
 	public Vector3 lookPos;//make it private somehow?
 	Animator animator;
+
 
 
 	//Transform modelTransform;
@@ -54,6 +57,17 @@ public class PlayerMovement : MonoBehaviour
 			isSneaking = true;
 		} else
 			isSneaking = false; // когда игрок отжимает контрол или когда движение = 0, отключается режим сникинга
+
+        if (Input.GetMouseButton(1))
+        {
+            isFistFight = true;
+            if (Input.GetMouseButtonDown(0) && fistFight != 1 && fistFight != 2)
+            {
+                fistFight = Random.Range(1, 3);
+            }
+            else fistFight = 0;
+        }
+        else isFistFight = false;
 	}
 
 	private void FixedUpdate()
@@ -95,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
 	// Координаты z точки попадания выравниваются с координатой z игрока (чтобы игрок смотрел строго прямо, а не влево).
 	// Полученная точка является точкой, куда смотрит игрок (lookPos)
 	{
+        lookPos = Vector3.right;
 		Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
@@ -131,6 +146,8 @@ public class PlayerMovement : MonoBehaviour
 		animator.SetFloat ("Movement", animValue, .1f, Time.deltaTime);
 		animator.SetBool ("isRunning", isRunning);
 		animator.SetBool ("isSneaking", isSneaking);
+        animator.SetBool ("isFistFight", isFistFight);
+        animator.SetInteger("FistFight", fistFight);
 	}
 
 

@@ -20,7 +20,7 @@ public class ItemButton : MonoBehaviour, IPointerClickHandler, IDragHandler
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            onRight.Invoke();
+           onRight.Invoke();
         }
     }
 
