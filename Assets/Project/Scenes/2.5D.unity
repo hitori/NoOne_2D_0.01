@@ -6120,7 +6120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetToFollow: {fileID: 383144523}
-  offset: {x: 7, y: 3, z: -10}
+  offset: {x: 5, y: 3, z: -10}
   playerMovementScript: {fileID: 383144524}
 --- !u!1001 &762336155
 Prefab:
