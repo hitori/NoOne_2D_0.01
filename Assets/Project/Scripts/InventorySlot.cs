@@ -1,16 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Events;
 
 public class InventorySlot : MonoBehaviour {
 
     ItemTemplate item;
     public Image itemIcon;
-    public GameObject rightClickMenu;
-    public RectTransform inventorySlot;
-    
+    public GameObject rightClickMenu; // Все слоты ссылаются на один объект. Возможно стоит это поправить
+                                      //public RectTransform inventorySlot; // Для определения местоположения текущего слота и размещения в нем меню rightClick
 
+    /*
+    private void Update() //если убираем курсор со слота, то rightClickMenu исчезает. Пока не работает
+    {
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log(EventSystem.current.transform.name);
+            rightClickMenu.SetActive(false);
+        }
+
+    }
+    */
 
     // Добавляем айтем в слот инвентаря (не путать с физическим добавлением предмета в лист айтемов)
     public void AddItemToSlot(ItemTemplate newItem)
@@ -47,7 +56,7 @@ public class InventorySlot : MonoBehaviour {
         if (item != null)
         {
             rightClickMenu.SetActive(true);
-            rightClickMenu.transform.position = inventorySlot.position;
+            rightClickMenu.transform.position = this.transform.position;
         }
         else
             rightClickMenu.SetActive(false);

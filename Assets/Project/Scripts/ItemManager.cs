@@ -113,14 +113,12 @@ public class ItemManager : MonoBehaviour {
 
             else if (timer-1 <= 0 && descriptionTextField.text != "") // Если таймер <= 0 и курсор уходит с предмета, то вызывается функция ClearingDescriptionText() и окно описания очищается
             {
-                Debug.Log(descriptionTextField.text);
                 Invoke("ClearingDescriptionText", 0f);
             }
         }
 
         else if (timer - 1 <= 0 && descriptionTextField.text != "") // Если таймер <= 0 и курсор уходит с предмета, то вызывается функция ClearingDescriptionText() и окно описания очищается
         {
-            Debug.Log(descriptionTextField.text);
             Invoke("ClearingDescriptionText", 0f);
         }
 

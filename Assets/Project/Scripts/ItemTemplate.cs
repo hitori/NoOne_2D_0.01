@@ -11,19 +11,20 @@ public class ItemTemplate : ScriptableObject {
     public bool crafting = false;
 
 
-
     public virtual void LeftButtonClickMain()
     {
 
         if (currentClass == itemClass.consumable)
         {
             Debug.Log("Eating " + name);
+            InventorySystem.instance.RemoveItem(this);
         }
 
         else if (currentClass == itemClass.equipment)
         {
             Debug.Log("Equipped " + name);
             // доработать с учетом замены текущей одежды
+            InventorySystem.instance.RemoveItem(this);
         }
 
         else if (currentClass == itemClass.ammo)
@@ -36,14 +37,15 @@ public class ItemTemplate : ScriptableObject {
         {
             Debug.Log("Used key " + name);
             // доработать с учетом проверки правильности ключа
+            InventorySystem.instance.RemoveItem(this);
         }
 
         else if (currentClass == itemClass.trading)
         {
-            Debug.Log("Trading " + name);
+            Debug.Log("I can trade this " + name + "for something useful");
         }
 
-        InventorySystem.instance.RemoveItem(this);
+        
     }
 
     //public virtual void RightButtonClickMain()
@@ -59,7 +61,7 @@ public class ItemTemplate : ScriptableObject {
 
     public virtual void ViewItemMain()
     {
-        Debug.Log("Let's see " + name);
+        Debug.Log("Let's see.." + name);
     }
 
     public virtual void DropItemMain()

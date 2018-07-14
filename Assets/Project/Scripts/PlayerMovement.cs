@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour 
 {
 
-	float movementWalkSpeed = 2f;// скорость ходьбы
+    float movementWalkSpeed = 2f;// скорость ходьбы
 	float movementRunSpeed = 7f;// скорость бега
 	float movementSneakSpeed = .8f; // скорость ходьбы когда крадешься
 	float movementTurningSpeed = 10f; // скорость поворота на 180 градусов
@@ -114,7 +114,10 @@ public class PlayerMovement : MonoBehaviour
 		RaycastHit hit;
 		if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
 			Vector3 lookP = hit.point;
-			lookP.z = transform.position.z;
+            //Debug.Log(hit.collider.gameObject.name);
+            //Debug.Log("Before " + lookP.z + " " + transform.position.z);
+            lookP.z = transform.position.z;
+            //Debug.Log("After " + lookP.z + " " + transform.position.z);
 			lookPos = lookP;
 		}
 
@@ -122,11 +125,11 @@ public class PlayerMovement : MonoBehaviour
 	}
 
 	void HandleRotation()
-	// Определяет направляение между текущим положением игрока и точкой, куда смотрит игрок.
-	// y-составляющую вектора направления приравниваем к нулю, чтобы игрок смотрел строго прямо (иначе модель начнет крутиться по оси z)
-	// Используем Slerp для плавного изменения вращения между текущим положением и тем, куда мы смотрим
-	{
-		Vector3 directionToLook = lookPos - transform.position;
+    // Поворот ТОЛЬКО вокруг оси у. Определяет направляение между текущим положением игрока и точкой, куда смотрит игрок.
+    // y-составляющую вектора направления приравниваем к нулю, чтобы игрок смотрел строго прямо (иначе модель начнет крутиться по оси z)
+    // Используем Slerp для плавного изменения вращения между текущим положением и тем, куда мы смотрим
+    {
+        Vector3 directionToLook = lookPos - transform.position;
 		directionToLook.y = 0;
 		Quaternion targetRotation = Quaternion.LookRotation (directionToLook);
 		transform.rotation = Quaternion.Slerp (transform.rotation, targetRotation, Time.fixedDeltaTime * movementTurningSpeed);

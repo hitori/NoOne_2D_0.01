@@ -52,12 +52,13 @@ public class IKHandler : MonoBehaviour {
         this.lookPos = playerMovementScript.lookPos; // Присваивает значение lookPos значению из скрипта PlayerMovement
 
         float distanceFromPlayer = Vector3.Distance(lookPos, transform.position); //Рассчитывает расстояние от точки lookPos до позиции Игрока
-        if (distanceFromPlayer > updatelookPosThreshold) // Если расстояние больше ограничения, то Игрок свободно смотрит на курсор мыши. Если курсор мыши слишком близко, то то Игрок смотрит в предыдущую точку
+        if (distanceFromPlayer > updatelookPosThreshold) // Если расстояние больше ограничения, то Игрок свободно смотрит на курсор мыши. Если курсор мыши слишком близко, то Игрок смотрит в предыдущую точку
         {
             targetPos = lookPos; // целевое положение приравнивается к положению мыши
         }
 
         IK_lookPos = Vector3.Lerp(IK_lookPos, targetPos, Time.deltaTime * lerpRate); // Взгляд плавно переходит от текущего положения на новое положение мыши
+        //Debug.Log("IK lookPos is: " + IK_lookPos);
 
         animator.SetLookAtWeight(lookWeight, bodyWeight, headWeight, headWeight, clampWeight); // Присваиваем веса различным частям тела, участвующим при слежении за курсором мыши. Чем больше вес, тем сильнее часть тела вовлечена в анимацию просмотра
         animator.SetLookAtPosition(IK_lookPos); // Включаем функцию прсмотра за курсором мыши

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 9mm ammo
   description: Ammo for 9mm gun
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 463e605ce2dc83e44bfa185489f3f3c2, type: 3}
   currentClass: 2
   crafting: 0
