@@ -26,7 +26,15 @@ public class InventorySystem : MonoBehaviour {
     #endregion
 
     public List<ItemTemplate> items = new List<ItemTemplate>(); // Создает лист айтемов, куда добавляеются новые айтемы при клике на них (не путать с ГУИ)
-    int inventoryCapacity = 40; // Размер листа айтемов, сколько вещей может взять игрок (не путать с количеством ячеек в окне инвентаря)
+    public ItemTemplate[] hands = new ItemTemplate[2];
+    [HideInInspector]
+    public int currentWeaponIndex;
+
+    private int inventoryCapacity = 40; // Размер листа айтемов, сколько вещей может взять игрок (не путать с количеством ячеек в окне инвентаря)
+    private ItemTemplate previousWeaponEquipped;
+
+
+
 
     // Добавляет предмет в список
     public bool AddItem(ItemTemplate item)
@@ -57,5 +65,42 @@ public class InventorySystem : MonoBehaviour {
         {
             onItemStatusChangedCallback.Invoke();
         }
+    }
+
+    public void EquipWeapon(ItemTemplate item)
+    {
+        if (item.currentWeaponClass != ItemTemplate.weaponClass.notAWeapon)
+        {
+
+            UnequipWeapon();
+            
+            if (item.isItTwoHandedWeapon)
+            {
+                for (int i = 0; i < hands.Length; i++)
+                {
+                    hands[i] = item;
+                    Debug.Log(i);
+                }
+            }
+            else hands[0] = item;
+
+            currentWeaponIndex = (int)item.currentWeaponClass;
+            previousWeaponEquipped = item;
+        }
+    }
+
+    public void UnequipWeapon()
+    {
+        if (previousWeaponEquipped != null)
+        {
+            AddItem(previousWeaponEquipped);
+        }
+
+        for (int i = 0; i < hands.Length; i++)
+        {
+            hands[i] = null;
+        }
+
+        currentWeaponIndex = 0;
     }
 }

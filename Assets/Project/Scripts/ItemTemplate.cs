@@ -9,6 +9,9 @@ public class ItemTemplate : ScriptableObject {
     public enum itemClass {consumable, equipment, ammo, keys, trading};
     public itemClass currentClass;
     public bool crafting = false;
+    public enum weaponClass { notAWeapon, meleeShort, meleeLong, firearmsPistol, firearmsAssaultRifle};
+    public weaponClass currentWeaponClass;
+    public bool isItTwoHandedWeapon = false;
 
 
     public virtual void LeftButtonClickMain()
@@ -23,7 +26,24 @@ public class ItemTemplate : ScriptableObject {
         else if (currentClass == itemClass.equipment)
         {
             Debug.Log("Equipped " + name);
+            InventorySystem.instance.EquipWeapon(this);
+            
+            
             // доработать с учетом замены текущей одежды
+
+            /*
+            switch (currentWeaponClass)
+            {
+                case 0:
+                    Debug.Log("Can't equip, not a weapon");
+                    break;
+
+                case 1:
+
+            }
+            */
+
+
             InventorySystem.instance.RemoveItem(this);
         }
 
@@ -69,4 +89,6 @@ public class ItemTemplate : ScriptableObject {
         Debug.Log("Dropped " + name);
         InventorySystem.instance.RemoveItem(this);
     }
+
+
 }

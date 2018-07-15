@@ -12,8 +12,6 @@ public class PlayerMovement : MonoBehaviour
 	float movementAmount;
 	bool isRunning = false;
 	bool isSneaking = false;
-    bool isFistFight = false;
-    int fistFight;
 
 	Vector2 velocity;
 	Rigidbody rb;
@@ -22,13 +20,13 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-	//Transform modelTransform;
- //   public Transform fakeShoulderPosition;
- //   public Transform rightShoulderArmature;
- //   GameObject tempRightShoulderPosition;
+    //Transform modelTransform;
+    //   public Transform fakeShoulderPosition;
+    //   public Transform rightShoulderArmature;
+    //   GameObject tempRightShoulderPosition;
 
 
-	void Start () 
+    void Start () 
 	{
 		rb = GetComponent<Rigidbody> ();
 		animator = GetComponent<Animator> ();
@@ -39,10 +37,10 @@ public class PlayerMovement : MonoBehaviour
 
 	void Update () 
 	{
-        if (EventSystem.current.IsPointerOverGameObject()) // блокирует клики мыши для перемещения игрока, когда включен инвентарь
-        {
-            return;
-        }
+        //if (EventSystem.current.IsPointerOverGameObject()) // блокирует клики мыши для перемещения игрока, когда включен инвентарь
+        //{
+        //    return;
+        //}
 
 		movementAmount = Input.GetAxis ("Horizontal") * movementWalkSpeed;
 
@@ -58,24 +56,17 @@ public class PlayerMovement : MonoBehaviour
 		} else
 			isSneaking = false; // когда игрок отжимает контрол или когда движение = 0, отключается режим сникинга
 
-        if (Input.GetMouseButton(1))
-        {
-            isFistFight = true;
-            if (Input.GetMouseButtonDown(0) && fistFight != 1 && fistFight != 2)
-            {
-                fistFight = Random.Range(1, 3);
-            }
-            else fistFight = 0;
-        }
-        else isFistFight = false;
+ 
 	}
 
 	private void FixedUpdate()
 	{
+        
         if (EventSystem.current.IsPointerOverGameObject()) // блокирует клики мыши для перемещения игрока, когда включен инвентарь
         {
             return;
         }
+        
 
         velocity = rb.velocity;
 
@@ -147,11 +138,9 @@ public class PlayerMovement : MonoBehaviour
 		}
 
 		animator.SetFloat ("Movement", animValue, .1f, Time.deltaTime);
-		animator.SetBool ("isRunning", isRunning);
+        animator.SetBool ("isRunning", isRunning);// use of damp time?
 		animator.SetBool ("isSneaking", isSneaking);
-        animator.SetBool ("isFistFight", isFistFight);
-        animator.SetInteger("FistFight", fistFight);
-	}
+    }
 
 
 

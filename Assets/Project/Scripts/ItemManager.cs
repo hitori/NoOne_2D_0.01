@@ -58,12 +58,13 @@ public class ItemManager : MonoBehaviour {
         {
             if (hit.collider.CompareTag("Item")) // Если луч попал в коллайдер с тэгом Item
             {
+
                 item = hit.collider.gameObject.GetComponent<Item>(); // кэшируем айтем, в который попали
 
                 if (item.isMouseOnItem) // идет ссылка на скрипт Item. Правда если мышь наведена на айтем
                 {
                     descriptionTextField.text = item.itemTemplate.description; // Поле описания заполняется информацией из параметров конкретного айтема
-                    
+
                     if (Input.GetMouseButtonDown(0))
                     {
                         float distanceToItem = Vector3.Distance(hit.point, player.position + Vector3.up); // Расчитывает расстояние от Игрока до указателя мышки

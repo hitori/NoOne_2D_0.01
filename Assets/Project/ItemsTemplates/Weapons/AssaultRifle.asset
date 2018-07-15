@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673d6fb41dc24284aa9fcaea160e22ba, type: 3}
+  m_Name: AssaultRifle
+  m_EditorClassIdentifier: 
+  name: Assault rifle
+  description: My favorite AK47
+  icon: {fileID: 0}
+  currentClass: 1
+  crafting: 0
+  currentWeaponClass: 4
+  isItTwoHandedWeapon: 1

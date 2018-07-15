@@ -65,19 +65,19 @@ public class InventorySlot : MonoBehaviour {
 
     public void BreakItem()
     {
-        item.BreakItemMain();
+        item.BreakItemMain();// не нужен ли override?
         rightClickMenu.SetActive(false);
     }
 
     public void ViewItem()
     {
-        item.ViewItemMain();
+        item.ViewItemMain();// не нужен ли override?
         rightClickMenu.SetActive(false);
     }
 
     public void DropItem()
     {
-        item.DropItemMain();
+        item.DropItemMain();// не нужен ли override?
         rightClickMenu.SetActive(false);
     }
 }
