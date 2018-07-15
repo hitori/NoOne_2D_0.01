@@ -13,8 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Long metal pipe
   description: Can hurt someone really bad
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: faa616f759cecf449873e147b89c87a6, type: 3}
   currentClass: 1
   crafting: 0
   currentWeaponClass: 2
   isItTwoHandedWeapon: 1
+  itemModel: {fileID: 1159704714735002, guid: c0453aec798c0124fbde8439001b2b54, type: 2}

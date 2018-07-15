@@ -12,6 +12,8 @@ public class ItemTemplate : ScriptableObject {
     public enum weaponClass { notAWeapon, meleeShort, meleeLong, firearmsPistol, firearmsAssaultRifle};
     public weaponClass currentWeaponClass;
     public bool isItTwoHandedWeapon = false;
+    public GameObject itemModel;
+
 
 
     public virtual void LeftButtonClickMain()

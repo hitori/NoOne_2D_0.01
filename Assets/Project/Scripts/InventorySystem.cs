@@ -29,11 +29,11 @@ public class InventorySystem : MonoBehaviour {
     public ItemTemplate[] hands = new ItemTemplate[2];
     [HideInInspector]
     public int currentWeaponIndex;
+    public Transform weaponHolder;
 
     private int inventoryCapacity = 40; // Размер листа айтемов, сколько вещей может взять игрок (не путать с количеством ячеек в окне инвентаря)
     private ItemTemplate previousWeaponEquipped;
-
-
+    private GameObject instantiatedWeapon;
 
 
     // Добавляет предмет в список
@@ -52,6 +52,7 @@ public class InventorySystem : MonoBehaviour {
         {
             onItemStatusChangedCallback.Invoke();
         }
+
 
         return true;
     }
@@ -79,11 +80,17 @@ public class InventorySystem : MonoBehaviour {
                 for (int i = 0; i < hands.Length; i++)
                 {
                     hands[i] = item;
-                    Debug.Log(i);
                 }
             }
             else hands[0] = item;
 
+
+            instantiatedWeapon = Instantiate(item.itemModel, weaponHolder);
+            instantiatedWeapon.transform.localPosition = Vector3.zero;
+            instantiatedWeapon.transform.localEulerAngles = Vector3.zero;
+
+
+            instantiatedWeapon.GetComponent<Collider>().enabled = false;
             currentWeaponIndex = (int)item.currentWeaponClass;
             previousWeaponEquipped = item;
         }
@@ -101,6 +108,7 @@ public class InventorySystem : MonoBehaviour {
             hands[i] = null;
         }
 
+        Destroy(instantiatedWeapon);
         currentWeaponIndex = 0;
     }
 }

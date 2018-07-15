@@ -13,8 +13,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Assault rifle
   description: My favorite AK47
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: c364f2a98ab1f364d98a6b3e0601731b, type: 3}
   currentClass: 1
   crafting: 0
   currentWeaponClass: 4
   isItTwoHandedWeapon: 1
+  itemModel: {fileID: 1228857655031352, guid: fe60944e6447b8347bcfcc70c4a2debe, type: 2}
+  grabbingPosition: {x: -0.045, y: 0.167, z: 0.039}
+  grabbingRotation: {x: 174.165, y: 4.037994, z: 95.99699}

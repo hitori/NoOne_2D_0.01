@@ -13,8 +13,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Pistol
   description: 9mm pistol
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 987208bd4ffe7ff40a45e5c05db63d09, type: 3}
   currentClass: 1
   crafting: 0
   currentWeaponClass: 3
   isItTwoHandedWeapon: 0
+  itemModel: {fileID: 1481753921480774, guid: d78b0f996bab01647b163fb0297ba326, type: 2}

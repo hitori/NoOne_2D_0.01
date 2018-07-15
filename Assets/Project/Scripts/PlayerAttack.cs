@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour {
     private int fistFightKnuckle;
     private Animator animator;
     private InventorySystem inventory;
-
+    private bool attack = false;
     
 
     void Start () {
@@ -22,26 +22,26 @@ public class PlayerAttack : MonoBehaviour {
         if (Input.GetMouseButton(1))
         {
             isInAttackState = true;
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                attack = true;
+                fistFightKnuckle = Random.Range(1, 3);
+            }
+            else
+            {
+                attack = false;
+                fistFightKnuckle = 0;
+            }
+
+            
         }
         else isInAttackState = false;
 
 
-        //if (Input.GetMouseButton(1))
-        //{
-        //    isInAttackState = true;
-        //    //if (Input.GetMouseButtonDown(0) && fistFightKnuckle != 1 && fistFightKnuckle != 2)
-        //    //{
-        //    //    fistFightKnuckle = Random.Range(1, 3);
-        //    //}
-        //    //else fistFightKnuckle = 0;
-
-
-        //}
-        //else isInAttackState = false;
-
         animator.SetBool("isInAttackState", isInAttackState);
         animator.SetInteger("FistFight", fistFightKnuckle);
         animator.SetInteger("currentWeaponClass", inventory.currentWeaponIndex);
-
+        animator.SetBool("attack", attack);
     }
 }
