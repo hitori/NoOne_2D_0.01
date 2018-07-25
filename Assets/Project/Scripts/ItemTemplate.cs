@@ -13,7 +13,13 @@ public class ItemTemplate : ScriptableObject {
     public weaponClass currentWeaponClass;
     public bool isItTwoHandedWeapon = false;
     public GameObject itemModel;
-
+    public float firerate;
+    public int damage;
+    public int maxAmmo;
+    public int ammoClipCapacity;
+    public float reloadTime;
+    public AudioClip attackSound;
+    public AudioClip reloadSound;
 
 
     public virtual void LeftButtonClickMain()

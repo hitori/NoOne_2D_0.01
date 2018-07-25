@@ -20,18 +20,20 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    //Transform modelTransform;
-    //   public Transform fakeShoulderPosition;
-    //   public Transform rightShoulderArmature;
-    //   GameObject tempRightShoulderPosition;
+    Transform modelTransform;
+    public Transform shoulderTrans;
+    public Transform rightShoulder;
+	GameObject rsp;
 
 
     void Start () 
 	{
 		rb = GetComponent<Rigidbody> ();
 		animator = GetComponent<Animator> ();
-        //tempRightShoulderPosition = new GameObject();
-        //tempRightShoulderPosition.name = transform.root.name + " rightshoulder IK helper";
+
+
+        rsp = new GameObject();
+        rsp.name = transform.root.name + " rightshoulder IK helper";
 	}
 	
 
@@ -93,6 +95,8 @@ public class PlayerMovement : MonoBehaviour
                              // если мышка находится левее игрока, то все анимации меняются местами (если этого не сделать, то движение вправо всегда будет с анимацией бега,
                              // даже если в этот момент игрок идет вправо спиной
 
+		HandleShoulder ();
+
 	}
 		
 	void HandleAimingPos()
@@ -146,15 +150,15 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    //void HandleShoulder()
-    //{
-    //    fakeShoulderPosition.LookAt(lookPos);
+    void HandleShoulder()
+    {
+		shoulderTrans.LookAt(lookPos);
 
-    //    Vector3 rightShoulderPos = rightShoulderArmature.TransformPoint(Vector3.zero);
-    //    tempRightShoulderPosition.transform.position = rightShoulderPos;
-    //    tempRightShoulderPosition.transform.parent = transform;
+		Vector3 rightShoulderPos = rightShoulder.TransformPoint(Vector3.zero);
+        rsp.transform.position = rightShoulderPos;
+        rsp.transform.parent = this.transform;
 
-    //    fakeShoulderPosition.position = tempRightShoulderPosition.transform.position;
-    //}
+		shoulderTrans.position = rsp.transform.position;
+    }
 
 }
