@@ -15,6 +15,7 @@ public class PlayerAttack : MonoBehaviour {
     private bool isReloading;
     private AudioSource audioSource;
 
+
     void Start () {
         animator = GetComponent<Animator>();
         inventory = InventorySystem.instance;
@@ -80,8 +81,13 @@ public class PlayerAttack : MonoBehaviour {
                 attack = true;
                 audioSource.clip = inventory.equippedWeapon.attackSound;
                 audioSource.Play();
+                if (!inventory.equippedWeapon.muzzleFlash.isPlaying)
+                {
+                    inventory.equippedWeapon.muzzleFlash.Play(true);
+                    Debug.Log("Particles");
+                }
+                
                 currentAmmoInClip--;
-
             }
 
             else
@@ -98,6 +104,10 @@ public class PlayerAttack : MonoBehaviour {
                 attack = true;
                 audioSource.clip = inventory.equippedWeapon.attackSound;
                 audioSource.Play();
+                if (!inventory.equippedWeapon.muzzleFlash.isPlaying)
+                {
+                    inventory.equippedWeapon.muzzleFlash.Play(true);
+                }
                 nextFire = Time.time + 1/inventory.equippedWeapon.firerate;
                 currentAmmoInClip--;
             }
@@ -131,6 +141,8 @@ public class PlayerAttack : MonoBehaviour {
                 currentAmmoInClip = currentAmmoInClip + currentAmmoInInventory;
             }
 
+            audioSource.clip = inventory.equippedWeapon.reloadSound;
+            audioSource.Play();
             yield return new WaitForSeconds(inventory.equippedWeapon.reloadTime);
 
             isReloading = false;
