@@ -20,7 +20,7 @@ public class ItemTemplate : ScriptableObject {
     public float reloadTime;
     public AudioClip attackSound;
     public AudioClip reloadSound;
-
+    public ParticleSystem muzzleFlash;
 
     public virtual void LeftButtonClickMain()
     {
