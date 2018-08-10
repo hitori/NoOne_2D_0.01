@@ -26,7 +26,7 @@ public class InventorySystem : MonoBehaviour {
     #endregion
 
     #region Delegate OnItemEquipped() // Пока нигде не используется
-    public delegate void OnItemEquipped();
+    public delegate void OnItemEquipped(ItemTemplate weapon);
     public OnItemStatusChanged onItemEquippedCallback;
     #endregion 
 
@@ -35,12 +35,24 @@ public class InventorySystem : MonoBehaviour {
     [HideInInspector]
     public int currentWeaponIndex;
     public Transform weaponHolder;
-    public ItemTemplate equippedWeapon;
+    public ItemTemplate equippedWeapon = null;
 
     private int inventoryCapacity = 40; // Размер листа айтемов, сколько вещей может взять игрок (не путать с количеством ячеек в окне инвентаря)
     private ItemTemplate previousWeaponEquipped;
-    private GameObject instantiatedWeapon;
-    
+
+    [HideInInspector]
+    public GameObject instantiatedWeapon;
+    //public ParticleSystem muzzleFlashParticles;
+
+    static int pistolAmmoInInv;
+    static int rifleAmmoInInv;
+    static int shotgunAmmoInInv;
+    static int sniperAmmoInInv;
+
+    private void Start()
+    {
+        
+    }
 
 
     // Добавляет предмет в список
@@ -102,6 +114,14 @@ public class InventorySystem : MonoBehaviour {
             previousWeaponEquipped = weapon;
 
             equippedWeapon = weapon;
+
+            if(onItemEquippedCallback != null)
+            {
+                onItemEquippedCallback.Invoke();
+            }
+
+
+            //Instantiate(weapon.muzzleFlashObject, instantiatedWeapon.transform.GetChild(instantiatedWeapon.transform.childCount - 1).transform); // инстанциирует muzzleFlash в точке, которая является последним ребенком в firepoint
         }
 
         return equippedWeapon;
@@ -122,4 +142,5 @@ public class InventorySystem : MonoBehaviour {
         Destroy(instantiatedWeapon);
         currentWeaponIndex = 0;
     }
+
 }

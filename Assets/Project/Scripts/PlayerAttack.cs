@@ -15,12 +15,14 @@ public class PlayerAttack : MonoBehaviour {
     private bool isReloading;
     private AudioSource audioSource;
 
+    //public ParticleSystem muzzle;
+
 
     void Start () {
         animator = GetComponent<Animator>();
         inventory = InventorySystem.instance;
         audioSource = GetComponent<AudioSource>();
-        currentAmmoInClip = 30;
+        currentAmmoInInventory = 100;
 	}
 	
 	
@@ -30,21 +32,53 @@ public class PlayerAttack : MonoBehaviour {
         {
             isInAttackState = true;
 
-            if (inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeShort && inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeLong) //изменить enum weaponType. Сделать дополнительнгый список, в котором будет только ручное и огнестрельное оружие
+            if (Input.GetMouseButtonDown(0))
             {
-                Shoot();
+                attack = true;
+                if (inventory.equippedWeapon != null)
+                {
+                    if (inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeShort && inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeLong) //изменить enum weaponType. Сделать дополнительнгый список, в котором будет только ручное и огнестрельное оружие
+                    {
+                        {
+                            ShootOneShot();
+                        }
+                    }
+                }
+
+                else
+                {
+                    Attack();
+                }
+
+
             }
 
-            else
+            else if (Input.GetMouseButton(0) && (Time.time > nextFire))
             {
-                Attack();
+                attack = true;
+                if (inventory.equippedWeapon != null)
+                {
+                    if (inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeShort && inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeLong) //изменить enum weaponType. Сделать дополнительнгый список, в котором будет только ручное и огнестрельное оружие
+                    {
+                        ShootAutoFire();
+                    }
+                }
+
+                else
+                {
+                    Attack();
+                }
             }
+
+            else attack = false;
         }
+
         else isInAttackState = false;
+ 
 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading)
         {
-            if (inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeShort && inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeLong)
+            if ((inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeShort && inventory.equippedWeapon.currentWeaponClass != ItemTemplate.weaponClass.meleeLong) || inventory.equippedWeapon != null)
             {
                 StartCoroutine("Reload");
             }   
@@ -59,68 +93,44 @@ public class PlayerAttack : MonoBehaviour {
 
     void Attack()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            fistFightKnuckle = Random.Range(1, 3);
-            attack = true;
-        }
-
-        else
-        {
-            attack = false;
-        }
+        fistFightKnuckle = Random.Range(1, 3);
     }
 
 
-    void Shoot()
+    void ShootOneShot()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (currentAmmoInClip > 0)
         {
-            if (currentAmmoInClip > 0)
-            {
-                attack = true;
-                audioSource.clip = inventory.equippedWeapon.attackSound;
-                audioSource.Play();
-                if (!inventory.equippedWeapon.muzzleFlash.isPlaying)
-                {
-                    inventory.equippedWeapon.muzzleFlash.Play(true);
-                    Debug.Log("Particles");
-                }
-                
-                currentAmmoInClip--;
-            }
-
-            else
-            {
-                currentAmmoInClip = 0;
-            }
-
+            audioSource.clip = inventory.equippedWeapon.attackSound;
+            audioSource.Play();
+            inventory.instantiatedWeapon.transform.GetChild(inventory.instantiatedWeapon.transform.childCount - 1).GetComponentInChildren<ParticleSystem>().Play();
+            //inventory.weaponHolder.GetComponentInChildren<ParticleSystem>().Play();// проигрывает particle system, находящийся в ребенке (ищет во всех детях? Не слишком ли это нагружает систему?)
+            currentAmmoInClip--;
         }
 
-        else if (Input.GetMouseButton(0) && (Time.time > nextFire))
-        {
-            if (currentAmmoInClip > 0)
-            {
-                attack = true;
-                audioSource.clip = inventory.equippedWeapon.attackSound;
-                audioSource.Play();
-                if (!inventory.equippedWeapon.muzzleFlash.isPlaying)
-                {
-                    inventory.equippedWeapon.muzzleFlash.Play(true);
-                }
-                nextFire = Time.time + 1/inventory.equippedWeapon.firerate;
-                currentAmmoInClip--;
-            }
-
-            else
-            {
-                currentAmmoInClip = 0;
-            }
-
-        }
         else
         {
-            attack = false;
+            currentAmmoInClip = 0;
+            audioSource.PlayOneShot(inventory.equippedWeapon.noAmmoSound);
+        }
+    }
+
+    void ShootAutoFire()
+    {
+        if (currentAmmoInClip > 0)
+        {
+            audioSource.clip = inventory.equippedWeapon.attackSound;
+            audioSource.Play();
+            inventory.instantiatedWeapon.transform.GetChild(inventory.instantiatedWeapon.transform.childCount - 1).GetComponentInChildren<ParticleSystem>().Play();
+            nextFire = Time.time + 1 / inventory.equippedWeapon.firerate;
+            currentAmmoInClip--;
+        }
+
+        else
+        {
+            currentAmmoInClip = 0;
+            //audioSource.clip = inventory.equippedWeapon.noAmmoSound;
+            audioSource.PlayOneShot(inventory.equippedWeapon.noAmmoSound);
         }
     }
 
@@ -150,6 +160,8 @@ public class PlayerAttack : MonoBehaviour {
 
         else
         {
+            audioSource.clip = inventory.equippedWeapon.noAmmoSound;
+            audioSource.Play();
             Debug.Log("No more ammo!");
         }
     }

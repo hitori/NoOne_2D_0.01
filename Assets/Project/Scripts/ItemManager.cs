@@ -21,6 +21,11 @@ public class ItemManager : MonoBehaviour {
 
     #endregion
 
+    #region Delegate OnItemPickedUp()
+    public delegate void OnItemPickedUp();
+    public OnItemPickedUp onItemPickedUpCallback;
+    #endregion
+
 
     public Transform player;
     float playerRadius = 2f;
@@ -77,6 +82,11 @@ public class ItemManager : MonoBehaviour {
                             {
                                 dialogCloud.text = "Picked " + item.itemTemplate.name;
                                 Destroy(hit.collider.gameObject);
+
+                                if (onItemPickedUpCallback != null)
+                                {
+                                    onItemPickedUpCallback.Invoke();
+                                }
                             }
 
                             ResetTimer(); // Обновляет таймер на стартовое значение
