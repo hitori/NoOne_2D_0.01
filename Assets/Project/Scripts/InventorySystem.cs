@@ -26,8 +26,8 @@ public class InventorySystem : MonoBehaviour {
     #endregion
 
     #region Delegate OnItemEquipped() // Пока нигде не используется
-    public delegate void OnItemEquipped(ItemTemplate weapon);
-    public OnItemStatusChanged onItemEquippedCallback;
+    public delegate void OnItemEquipped(GameObject weaponInHands);
+    public OnItemEquipped onItemEquippedCallback;
     #endregion 
 
     public List<ItemTemplate> items = new List<ItemTemplate>(); // Создает лист айтемов, куда добавляеются новые айтемы при клике на них (не путать с ГУИ)
@@ -115,13 +115,13 @@ public class InventorySystem : MonoBehaviour {
 
             equippedWeapon = weapon;
 
-            if(onItemEquippedCallback != null)
-            {
-                onItemEquippedCallback.Invoke();
-            }
+            //if(onItemEquippedCallback != null)
+            //{
+            //    onItemEquippedCallback.Invoke(instantiatedWeapon);
+            //}
 
 
-            //Instantiate(weapon.muzzleFlashObject, instantiatedWeapon.transform.GetChild(instantiatedWeapon.transform.childCount - 1).transform); // инстанциирует muzzleFlash в точке, которая является последним ребенком в firepoint
+            Instantiate(weapon.muzzleFlashObject, instantiatedWeapon.transform.GetChild(instantiatedWeapon.transform.childCount - 1).transform); // инстанциирует muzzleFlash в точке, которая является последним ребенком в firepoint
         }
 
         return equippedWeapon;

@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform shoulderTrans;
     public Transform rightShoulder;
 	GameObject rsp;
+    public Transform armatureWeaponHolder;
+    public Transform parentWeaponHolder;
 
 
     void Start () 
@@ -152,7 +154,10 @@ public class PlayerMovement : MonoBehaviour
 
     void HandleShoulder()
     {
-		shoulderTrans.LookAt(lookPos);
+        //parentWeaponHolder.position = armatureWeaponHolder.position;
+        //parentWeaponHolder.rotation = armatureWeaponHolder.rotation;
+
+        shoulderTrans.LookAt(lookPos);
 
 		Vector3 rightShoulderPos = rightShoulder.TransformPoint(Vector3.zero);
         rsp.transform.position = rightShoulderPos;

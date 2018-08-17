@@ -129,8 +129,13 @@ public class PlayerAttack : MonoBehaviour {
         else
         {
             currentAmmoInClip = 0;
-            //audioSource.clip = inventory.equippedWeapon.noAmmoSound;
-            audioSource.PlayOneShot(inventory.equippedWeapon.noAmmoSound);
+            audioSource.clip = inventory.equippedWeapon.noAmmoSound;
+
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+            
         }
     }
 
@@ -161,7 +166,10 @@ public class PlayerAttack : MonoBehaviour {
         else
         {
             audioSource.clip = inventory.equippedWeapon.noAmmoSound;
-            audioSource.Play();
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
             Debug.Log("No more ammo!");
         }
     }

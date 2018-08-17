@@ -15,15 +15,15 @@ public class IKHandler : MonoBehaviour {
     public float headWeight = .8f;
     public float clampWeight = .5f;
 
-    //    float rightHandWeight = 1;
-    //    float leftHandWeight = 1;
-    //    public Transform rightHandTarget;
+     //   float rightHandWeight = 1;
+     //   float leftHandWeight = 1;
+     //   public Transform rightHandTarget;
     //    public Transform rightElbowTarget;
     //    public Transform leftHandTarget;
     //    public Transform leftElbowTarget;
 
     private float angle;
-    public Transform rightShoulder;
+    //public Transform rightShoulder;
 
     private void Start()
     {
@@ -65,9 +65,9 @@ public class IKHandler : MonoBehaviour {
         animator.SetLookAtPosition(IK_lookPos); // Включаем функцию прсмотра за курсором мыши
     }
 
-    void Update()
-    {
-        angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
-        rightShoulder.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-    }
+    //void Update()
+    //{
+    //    angle = Mathf.Atan2(targetPos.y, targetPos.x) * Mathf.Rad2Deg;
+    //    rightShoulder.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    //}
 }
