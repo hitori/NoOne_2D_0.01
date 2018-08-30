@@ -22,6 +22,7 @@ public class ItemTemplate : ScriptableObject {
     public AudioClip reloadSound;
     public GameObject muzzleFlashObject;
     public AudioClip noAmmoSound;
+    public Transform gunBurrel;
 
     public virtual void LeftButtonClickMain()
     {

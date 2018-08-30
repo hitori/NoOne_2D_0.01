@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour {
 
-    private bool isInAttackState = false;
+    static public bool isInAttackState = false; // STATIC
     private int fistFightKnuckle;
     private Animator animator;
     private InventorySystem inventory;
@@ -15,7 +15,19 @@ public class PlayerAttack : MonoBehaviour {
     private bool isReloading;
     private AudioSource audioSource;
 
-    //public ParticleSystem muzzle;
+    ParticleSystem muzzle;
+    PlayerMovement playermovementScript;
+
+    Transform chest;
+    public GameObject target;
+    private IKHandler ikHandlerScript;
+    private Vector3 lookPos;
+
+
+    int maxAngleToAim = 30; // насколько вверх можно поднимать оружие (прицеливаться)
+    int minAngleToAim = 90; // насколько вниз можно опускать оружие (прицеливаться)
+    public Vector3 offset;
+    Vector3 diff2;
 
 
     void Start () {
@@ -23,14 +35,24 @@ public class PlayerAttack : MonoBehaviour {
         inventory = InventorySystem.instance;
         audioSource = GetComponent<AudioSource>();
         currentAmmoInInventory = 100;
-	}
+
+        //
+        playermovementScript = GetComponent<PlayerMovement>();
+        ikHandlerScript = GetComponent<IKHandler>();
+        chest = animator.GetBoneTransform(HumanBodyBones.Chest);
+        //
+    }
 	
 	
 	void Update () {
 
+        lookPos = ikHandlerScript.targetPos;
+
         if (Input.GetMouseButton(1) && !isReloading)
         {
             isInAttackState = true;
+
+            
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -91,6 +113,45 @@ public class PlayerAttack : MonoBehaviour {
         animator.SetBool("attack", attack);
     }
 
+    private void LateUpdate()
+    {
+
+        if (isInAttackState)
+        {
+            Vector3 diff = lookPos - this.transform.position;
+            //diff.Normalize();
+            //diff = transform.InverseTransformDirection(diff);
+            float angle = Vector3.Angle(lookPos, this.transform.position);
+            //float angle2 = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+
+            //if (angle < maxAngleToAim)
+            //    angle = maxAngleToAim;
+            //if (angle > minAngleToAim)
+            //    angle = minAngleToAim;
+            //Debug.Log(angle);
+
+            if (angle >= maxAngleToAim)// && angle <= minAngleToAim)
+            {
+                angle = maxAngleToAim;
+
+                if (angle <= minAngleToAim)
+                {
+                    angle = minAngleToAim;
+                    diff2 = diff;
+
+                    //chest.transform.rotation = Quaternion.LookRotation(diff);
+                    //chest.transform.rotation = Quaternion.Euler(angle, offset.y, offset.z);
+                }
+
+
+            }
+
+            chest.LookAt(diff2);
+        }
+
+
+    }
+
     void Attack()
     {
         fistFightKnuckle = Random.Range(1, 3);
@@ -103,7 +164,11 @@ public class PlayerAttack : MonoBehaviour {
         {
             audioSource.clip = inventory.equippedWeapon.attackSound;
             audioSource.Play();
-            inventory.instantiatedWeapon.transform.GetChild(inventory.instantiatedWeapon.transform.childCount - 1).GetComponentInChildren<ParticleSystem>().Play();
+            muzzle = inventory.instantiatedWeapon.transform.GetChild(inventory.instantiatedWeapon.transform.childCount - 1).GetComponentInChildren<ParticleSystem>();
+            //muzzle.transform.localPosition = Vector3.zero;
+            //float angle = Mathf.Atan2(lookPos.y, lookPos.x) * Mathf.Rad2Deg;
+            //muzzle.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            muzzle.Play();
             //inventory.weaponHolder.GetComponentInChildren<ParticleSystem>().Play();// проигрывает particle system, находящийся в ребенке (ищет во всех детях? Не слишком ли это нагружает систему?)
             currentAmmoInClip--;
         }
@@ -173,4 +238,6 @@ public class PlayerAttack : MonoBehaviour {
             Debug.Log("No more ammo!");
         }
     }
+
+    
 }

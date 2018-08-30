@@ -5,24 +5,25 @@ public class IKHandler : MonoBehaviour {
     Animator animator;
     Vector3 lookPos;
     Vector3 IK_lookPos;
-    Vector3 targetPos;
+    [HideInInspector]
+    public Vector3 targetPos;
     PlayerMovement playerMovementScript;
 
     public float lerpRate = 15f;
-    public float updatelookPosThreshold = 2; // величина, ограничивающая насколько Игрок нагибается (или поднимает голову вверх), чтобы увидеть курсор мыши
+    public float updatelookPosThreshold = 0; // величина, ограничивающая насколько Игрок нагибается (или поднимает голову вверх), чтобы увидеть курсор мыши
     public float lookWeight = .5f;
     public float bodyWeight = .1f;
     public float headWeight = .8f;
     public float clampWeight = .5f;
 
-     //   float rightHandWeight = 1;
-     //   float leftHandWeight = 1;
-     //   public Transform rightHandTarget;
-    //    public Transform rightElbowTarget;
-    //    public Transform leftHandTarget;
-    //    public Transform leftElbowTarget;
+        //float rightHandWeight = 1;
+        //float leftHandWeight = 1;
+        //public Transform rightHandTarget;
+        //public Transform rightElbowTarget;
+        //public Transform leftHandTarget;
+        //public Transform leftElbowTarget;
 
-    private float angle;
+    //private float angle;
     //public Transform rightShoulder;
 
     private void Start()
@@ -33,23 +34,23 @@ public class IKHandler : MonoBehaviour {
 
     private void OnAnimatorIK()
     {
-//        animator.SetIKPositionWeight(AvatarIKGoal.RightHand, rightHandWeight);
-//        animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, leftHandWeight);
-//
-//        animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandTarget.position);
-//        animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHandTarget.position);
-//
+        //animator.SetIKPositionWeight(AvatarIKGoal.RightHand, rightHandWeight);
+        //animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, leftHandWeight);
+
+        //animator.SetIKPosition(AvatarIKGoal.RightHand, rightHandTarget.position);
+        //animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHandTarget.position);
+
         //animator.SetIKRotationWeight(AvatarIKGoal.RightHand, rightHandWeight);
         //animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, leftHandWeight);
 
         //animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandTarget.rotation);
 		//animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHandTarget.rotation);
-//
-//        animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, rightHandWeight);
-//        animator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, leftHandWeight);
-//
-//        animator.SetIKHintPosition(AvatarIKHint.RightElbow, rightElbowTarget.position);
-//        animator.SetIKHintPosition(AvatarIKHint.LeftElbow, leftElbowTarget.position);
+
+        //animator.SetIKHintPositionWeight(AvatarIKHint.RightElbow, rightHandWeight);
+        //animator.SetIKHintPositionWeight(AvatarIKHint.LeftElbow, leftHandWeight);
+
+        //animator.SetIKHintPosition(AvatarIKHint.RightElbow, rightElbowTarget.position);
+        //animator.SetIKHintPosition(AvatarIKHint.LeftElbow, leftElbowTarget.position);
 
         this.lookPos = playerMovementScript.lookPos; // Присваивает значение lookPos значению из скрипта PlayerMovement
 

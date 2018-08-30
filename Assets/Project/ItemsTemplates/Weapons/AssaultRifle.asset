@@ -18,7 +18,7 @@ MonoBehaviour:
   crafting: 0
   currentWeaponClass: 4
   isItTwoHandedWeapon: 1
-  itemModel: {fileID: 1045622510029314, guid: fe60944e6447b8347bcfcc70c4a2debe, type: 2}
+  itemModel: {fileID: 1273591880444820, guid: fe60944e6447b8347bcfcc70c4a2debe, type: 2}
   firerate: 10
   damage: 10
   maxAmmo: 150
@@ -29,3 +29,4 @@ MonoBehaviour:
   muzzleFlashObject: {fileID: 1272230799060928, guid: a9939accabf6214499ab679937486f50,
     type: 2}
   noAmmoSound: {fileID: 8300000, guid: f84d21e32e6a3e246a830bfc7fb20d50, type: 3}
+  gunBurrel: {fileID: 4498109993376482, guid: fe60944e6447b8347bcfcc70c4a2debe, type: 2}

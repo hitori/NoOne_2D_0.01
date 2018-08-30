@@ -35,7 +35,7 @@ public class InventorySystem : MonoBehaviour {
     [HideInInspector]
     public int currentWeaponIndex;
     public Transform weaponHolder;
-    public ItemTemplate equippedWeapon = null;
+    public ItemTemplate equippedWeapon;
 
     private int inventoryCapacity = 40; // Размер листа айтемов, сколько вещей может взять игрок (не путать с количеством ячеек в окне инвентаря)
     private ItemTemplate previousWeaponEquipped;
@@ -49,9 +49,16 @@ public class InventorySystem : MonoBehaviour {
     static int shotgunAmmoInInv;
     static int sniperAmmoInInv;
 
-    private void Start()
+
+    private bool isWeaponEquipped = false;
+
+    private void Update()
     {
-        
+        if (equippedWeapon != null)
+        {
+            Debug.DrawRay(instantiatedWeapon.transform.GetChild(0).transform.position, -instantiatedWeapon.transform.GetChild(0).transform.right * 10f, Color.yellow);
+            Debug.Log("draw a ray");
+        }
     }
 
 
@@ -122,9 +129,13 @@ public class InventorySystem : MonoBehaviour {
 
 
             Instantiate(weapon.muzzleFlashObject, instantiatedWeapon.transform.GetChild(instantiatedWeapon.transform.childCount - 1).transform); // инстанциирует muzzleFlash в точке, которая является последним ребенком в firepoint
+
+            
         }
 
+        
         return equippedWeapon;
+        
     }
 
     public void UnequipWeapon()
@@ -142,5 +153,7 @@ public class InventorySystem : MonoBehaviour {
         Destroy(instantiatedWeapon);
         currentWeaponIndex = 0;
     }
+
+   
 
 }

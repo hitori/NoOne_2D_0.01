@@ -20,12 +20,12 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    Transform modelTransform;
-    public Transform shoulderTrans;
-    public Transform rightShoulder;
-	GameObject rsp;
-    public Transform armatureWeaponHolder;
-    public Transform parentWeaponHolder;
+    //Transform modelTransform;
+    //public Transform shoulderTrans;
+    //public Transform rightShoulder;
+	//GameObject rsp;
+    //public Transform armatureWeaponHolder;
+    //public Transform parentWeaponHolder;
 
 
     void Start () 
@@ -34,8 +34,8 @@ public class PlayerMovement : MonoBehaviour
 		animator = GetComponent<Animator> ();
 
 
-        rsp = new GameObject();
-        rsp.name = transform.root.name + " rightshoulder IK helper";
+        //rsp = new GameObject();
+        //rsp.name = transform.root.name + " rightshoulder IK helper";
 	}
 	
 
@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
                              // если мышка находится левее игрока, то все анимации меняются местами (если этого не сделать, то движение вправо всегда будет с анимацией бега,
                              // даже если в этот момент игрок идет вправо спиной
 
-		HandleShoulder ();
+		//HandleShoulder ();
 
 	}
 		
@@ -152,18 +152,15 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    void HandleShoulder()
-    {
-        //parentWeaponHolder.position = armatureWeaponHolder.position;
-        //parentWeaponHolder.rotation = armatureWeaponHolder.rotation;
+  //  void HandleShoulder()
+  //  {
+  //      shoulderTrans.LookAt(lookPos);
 
-        shoulderTrans.LookAt(lookPos);
+		//Vector3 rightShoulderPos = rightShoulder.TransformPoint(Vector3.zero);
+  //      rsp.transform.position = rightShoulderPos;
+  //      rsp.transform.parent = this.transform;
 
-		Vector3 rightShoulderPos = rightShoulder.TransformPoint(Vector3.zero);
-        rsp.transform.position = rightShoulderPos;
-        rsp.transform.parent = this.transform;
-
-		shoulderTrans.position = rsp.transform.position;
-    }
+		//shoulderTrans.position = rsp.transform.position;
+  //  }
 
 }
