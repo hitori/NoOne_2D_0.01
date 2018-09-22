@@ -73,6 +73,7 @@ AnimatorController:
     m_Name: SecondIdle Layer
     m_StateMachine: {fileID: 1107217442431699014}
     m_Mask: {fileID: 31900000, guid: ea848f09a694c1646820c92c42ac0a93, type: 2}
+<<<<<<< HEAD
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -97,6 +98,8 @@ AnimatorController:
     m_Name: SecondIdle Layer
     m_StateMachine: {fileID: 1107217442431699014}
     m_Mask: {fileID: 31900000, guid: ea848f09a694c1646820c92c42ac0a93, type: 2}
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -421,9 +424,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 3
+<<<<<<< HEAD
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 3
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -610,9 +616,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 0
+<<<<<<< HEAD
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 0
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -880,9 +889,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: attack
     m_EventTreshold: 0
+<<<<<<< HEAD
   - m_ConditionMode: 1
     m_ConditionEvent: attack
     m_EventTreshold: 0
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102094434502871496}
   m_Solo: 0
@@ -1051,9 +1063,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: attack
     m_EventTreshold: 0
+<<<<<<< HEAD
   - m_ConditionMode: 1
     m_ConditionEvent: attack
     m_EventTreshold: 0
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102103608174774236}
   m_Solo: 0
@@ -1078,9 +1093,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 1
+<<<<<<< HEAD
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 1
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -1390,9 +1408,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 2
+<<<<<<< HEAD
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 2
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
