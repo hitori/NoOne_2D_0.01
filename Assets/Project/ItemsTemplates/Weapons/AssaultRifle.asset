@@ -30,3 +30,7 @@ MonoBehaviour:
     type: 2}
   noAmmoSound: {fileID: 8300000, guid: f84d21e32e6a3e246a830bfc7fb20d50, type: 3}
   gunBurrel: {fileID: 4498109993376482, guid: fe60944e6447b8347bcfcc70c4a2debe, type: 2}
+  rHandPos: {x: 0.185, y: -0.01, z: 0.196}
+  rHanRot: {x: -2.48, y: -14.982, z: -88.561}
+  lHand_target: {fileID: 4424975312639490, guid: fe60944e6447b8347bcfcc70c4a2debe,
+    type: 2}

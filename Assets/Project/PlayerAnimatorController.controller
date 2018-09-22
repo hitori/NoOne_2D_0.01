@@ -66,7 +66,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: SecondIdle Layer
     m_StateMachine: {fileID: 1107217442431699014}
-    m_Mask: {fileID: 31900000, guid: 311257473f84c9c4f8c0313292d099f9, type: 2}
+    m_Mask: {fileID: 31900000, guid: ea848f09a694c1646820c92c42ac0a93, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -390,7 +390,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
-    m_EventTreshold: 4
+    m_EventTreshold: 3
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -576,7 +576,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
-    m_EventTreshold: 1
+    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -867,7 +867,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
-    m_EventTreshold: 4
+    m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102878758392788330}
   m_Solo: 0
@@ -1035,7 +1035,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
-    m_EventTreshold: 2
+    m_EventTreshold: 1
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -1129,9 +1129,9 @@ AnimatorStateTransition:
   m_PrefabInternal: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
+  - m_ConditionMode: 7
     m_ConditionEvent: currentWeaponClass
-    m_EventTreshold: 4
+    m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102189502454495884}
   m_Solo: 0
@@ -1344,7 +1344,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
-    m_EventTreshold: 3
+    m_EventTreshold: 2
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0

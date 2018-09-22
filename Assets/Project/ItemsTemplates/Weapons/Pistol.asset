@@ -14,9 +14,6 @@ MonoBehaviour:
   name: Pistol
   description: 9mm pistol
   icon: {fileID: 21300000, guid: 987208bd4ffe7ff40a45e5c05db63d09, type: 3}
-  currentClass: 1
-  crafting: 0
-  currentWeaponClass: 3
   isItTwoHandedWeapon: 0
   itemModel: {fileID: 1481753921480774, guid: d78b0f996bab01647b163fb0297ba326, type: 2}
   firerate: 5
@@ -29,3 +26,13 @@ MonoBehaviour:
   muzzleFlashObject: {fileID: 1950061867873970, guid: 8b55ef341ba190e4dbdfb5f2f8730b67,
     type: 2}
   noAmmoSound: {fileID: 8300000, guid: f84d21e32e6a3e246a830bfc7fb20d50, type: 3}
+  gunBurrel: {fileID: 0}
+  rHandPos: {x: 0, y: 0, z: 0}
+  rHanRot: {x: 0, y: 0, z: 0}
+  lHand_target: {fileID: 0}
+  currentClass: 0
+  currentConsumableClass: 0
+  currentEquipmentClass: 0
+  currentAmmoClass: 0
+  currentKeyClass: 0
+  currentWeaponClass: 3

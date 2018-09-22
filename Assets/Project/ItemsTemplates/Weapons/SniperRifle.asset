@@ -29,3 +29,8 @@ MonoBehaviour:
   muzzleFlashObject: {fileID: 1863213626478716, guid: d40c87890a9d1c54ea20584cbe08d1e6,
     type: 2}
   noAmmoSound: {fileID: 8300000, guid: f84d21e32e6a3e246a830bfc7fb20d50, type: 3}
+  gunBurrel: {fileID: 4250283991711294, guid: f6276d4de6152ca4582a07e7e432edde, type: 2}
+  rHandPos: {x: 0.122, y: -0.002, z: 0.213}
+  rHanRot: {x: -5.756, y: -13.931, z: -88.61401}
+  lHand_target: {fileID: 4436746720411686, guid: f6276d4de6152ca4582a07e7e432edde,
+    type: 2}
