@@ -25,22 +25,27 @@ public class InventorySystem : MonoBehaviour {
     public OnItemStatusChanged onItemStatusChangedCallback;
     #endregion
 
-    #region Delegate OnItemEquipped() // Пока нигде не используется
-    public delegate void OnItemEquipped();
-    public OnItemStatusChanged onItemEquippedCallback;
-    #endregion 
-
     public List<ItemTemplate> items = new List<ItemTemplate>(); // Создает лист айтемов, куда добавляеются новые айтемы при клике на них (не путать с ГУИ)
     public ItemTemplate[] hands = new ItemTemplate[2];
     [HideInInspector]
     public int currentWeaponIndex;
     public Transform weaponHolder;
-    public ItemTemplate equippedWeapon;
+    public Item_Equipment_Weapon equippedWeapon;
 
     private int inventoryCapacity = 40; // Размер листа айтемов, сколько вещей может взять игрок (не путать с количеством ячеек в окне инвентаря)
     private ItemTemplate previousWeaponEquipped;
-    private GameObject instantiatedWeapon;
-    
+
+    [HideInInspector]
+    public GameObject instantiatedWeapon;
+    //public ParticleSystem muzzleFlashParticles;
+
+    static int pistolAmmoInInv;
+    static int rifleAmmoInInv;
+    static int shotgunAmmoInInv;
+    static int sniperAmmoInInv;
+
+
+    private bool isWeaponEquipped = false;
 
 
     // Добавляет предмет в список
@@ -75,51 +80,60 @@ public class InventorySystem : MonoBehaviour {
         }
     }
 
-    public ItemTemplate EquipWeapon(ItemTemplate weapon)
-    {
-        if (weapon.currentWeaponClass != ItemTemplate.weaponClass.notAWeapon)
-        {
+    //public Item_Equipment_Weapon EquipWeapon(Item_Equipment_Weapon weapon)
+    //{
+    //    UnequipWeapon();
 
-            UnequipWeapon();
-
-            if (weapon.isItTwoHandedWeapon)
-            {
-                for (int i = 0; i < hands.Length; i++)
-                {
-                    hands[i] = weapon;
-                }
-            }
-            else hands[0] = weapon;
+    //    if (weapon.currentWeaponClass == Item_Equipment_Weapon.weaponClass.meleeLong || weapon.currentWeaponClass == Item_Equipment_Weapon.weaponClass.firearmsAssaultRifle) // оружие является двуручным
+    //    {
+    //        for (int i = 0; i < hands.Length; i++)
+    //        {
+    //            hands[i] = weapon;
+    //        }
+    //    }
+    //    else hands[0] = weapon;
 
 
-            instantiatedWeapon = Instantiate(weapon.itemModel, weaponHolder);
-            instantiatedWeapon.transform.localPosition = Vector3.zero;
-            instantiatedWeapon.transform.localEulerAngles = Vector3.zero;
+    //    instantiatedWeapon = Instantiate(weapon.itemPrefab, weaponHolder);
+    //    instantiatedWeapon.transform.localPosition = Vector3.zero;
+    //    instantiatedWeapon.transform.localEulerAngles = Vector3.zero;
 
 
-            instantiatedWeapon.GetComponent<Collider>().enabled = false;
-            currentWeaponIndex = (int)weapon.currentWeaponClass;
-            previousWeaponEquipped = weapon;
+    //    instantiatedWeapon.GetComponent<Collider>().enabled = false;
+    //    currentWeaponIndex = (int)weapon.currentWeaponClass;
+    //    previousWeaponEquipped = weapon;
 
-            equippedWeapon = weapon;
-        }
+    //    equippedWeapon = weapon;
 
-        return equippedWeapon;
-    }
+    //    //if(onItemEquippedCallback != null)
+    //    //{
+    //    //    onItemEquippedCallback.Invoke(instantiatedWeapon);
+    //    //}
 
-    public void UnequipWeapon()
-    {
-        if (previousWeaponEquipped != null)
-        {
-            AddItem(previousWeaponEquipped);
-        }
 
-        for (int i = 0; i < hands.Length; i++)
-        {
-            hands[i] = null;
-        }
+    //    Instantiate(weapon.muzzleFlashObject, instantiatedWeapon.transform.GetChild(instantiatedWeapon.transform.childCount - 1).transform); // инстанциирует muzzleFlash в точке, которая является последним ребенком в firepoint
 
-        Destroy(instantiatedWeapon);
-        currentWeaponIndex = 0;
-    }
+
+    //    return equippedWeapon; // нужен ли ретурн???
+        
+    //}
+
+    //public void UnequipWeapon()
+    //{
+    //    if (previousWeaponEquipped != null)
+    //    {
+    //        AddItem(previousWeaponEquipped);
+    //    }
+
+    //    for (int i = 0; i < hands.Length; i++)
+    //    {
+    //        hands[i] = null;
+    //    }
+
+    //    Destroy(instantiatedWeapon);
+    //    currentWeaponIndex = 0;
+    //}
+
+   
+
 }

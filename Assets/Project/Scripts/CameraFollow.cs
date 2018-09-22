@@ -2,31 +2,30 @@
 
 public class CameraFollow : MonoBehaviour {
 
-	public Transform targetToFollow;
-	float smoothSpeed = 10f;
-	public Vector3 offset;
-    public PlayerMovement playerMovementScript;
-    Vector3 lookPos;
-    bool isPlayerFacingRight = true;
+	public Transform playerPosition; // позиция player'а
+	public float smoothSpeed = 10f; // сглаживание движения камеры (чтобы она не очень резко искала playaer'а)
+	public Vector3 offset; // сдвиг камеры, чтобы игрок был не по центру
+    
+    private bool isPlayerFacingRight = true; // служит для отслеживания поворота
+    private Vector3 _lookPos;
 
     void FixedUpdate()
 	{
-        this.lookPos = playerMovementScript.lookPos;
+        _lookPos = PlayerLookAround.lookPos;
 
-        if (this.lookPos.x + 1.5 < targetToFollow.transform.position.x && isPlayerFacingRight)
+        if (_lookPos.x < playerPosition.transform.position.x && isPlayerFacingRight)
         {
             offset.x = -offset.x;
             isPlayerFacingRight = false;
         }
 
-        else if (this.lookPos.x - 1.5 >= targetToFollow.transform.position.x && !isPlayerFacingRight)
+        else if (_lookPos.x >= playerPosition.transform.position.x && !isPlayerFacingRight)
         {
             offset.x = -offset.x;
             isPlayerFacingRight = true;
         }
 
-
-		Vector3 desiredPosition = targetToFollow.position + offset;
+        Vector3 desiredPosition = playerPosition.position + offset;
 		Vector3 smoothedPosition = Vector3.Lerp (transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
 		transform.position = smoothedPosition;
 	}
