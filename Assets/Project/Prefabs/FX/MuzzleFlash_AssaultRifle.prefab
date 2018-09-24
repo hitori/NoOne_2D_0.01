@@ -13,8 +13,18 @@ Prefab:
   m_IsPrefabAsset: 1
 --- !u!1 &1272230799060928
 GameObject:
+<<<<<<< HEAD:Assets/Project/Prefabs/FX/MuzzleFlash_AssaultRifle.prefab
+<<<<<<< HEAD:Assets/Project/Prefabs/Weapons/AK-47.prefab
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+=======
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7:Assets/Project/Prefabs/FX/MuzzleFlash_AssaultRifle.prefab
+=======
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7:Assets/Project/Prefabs/FX/MuzzleFlash_AssaultRifle.prefab
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
@@ -35,10 +45,80 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1272230799060928}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+<<<<<<< HEAD:Assets/Project/Prefabs/FX/MuzzleFlash_AssaultRifle.prefab
+<<<<<<< HEAD:Assets/Project/Prefabs/Weapons/AK-47.prefab
+  m_LocalPosition: {x: 1.3, y: 1.823, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4465692345557146}
+  - {fileID: 4810650440452144}
+  - {fileID: 4837363992333402}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!4 &4465692345557146
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1317598938116924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.299, y: 0, z: -0.038}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4240716376814328}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4810650440452144
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1991399579302012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.054, y: -0.059, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4240716376814328}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4837363992333402
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1234764448627276}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5444, y: 0.034, z: 0.0004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4892911631182816}
+  m_Father: {fileID: 4240716376814328}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4892911631182816
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1022423567066622}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.500001, y: 2.5, z: 2.500001}
+  m_Children: []
+  m_Father: {fileID: 4837363992333402}
+=======
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 0}
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7:Assets/Project/Prefabs/FX/MuzzleFlash_AssaultRifle.prefab
+=======
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_Children: []
+  m_Father: {fileID: 0}
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7:Assets/Project/Prefabs/FX/MuzzleFlash_AssaultRifle.prefab
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!198 &198769125436851208

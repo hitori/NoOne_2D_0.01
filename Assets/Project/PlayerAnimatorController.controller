@@ -50,6 +50,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: attack
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -67,6 +73,33 @@ AnimatorController:
     m_Name: SecondIdle Layer
     m_StateMachine: {fileID: 1107217442431699014}
     m_Mask: {fileID: 31900000, guid: ea848f09a694c1646820c92c42ac0a93, type: 2}
+<<<<<<< HEAD
+    m_Motions: []
+    m_Behaviours: []
+    m_BlendingMode: 0
+    m_SyncedLayerIndex: -1
+    m_DefaultWeight: 1
+    m_IKPass: 1
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
+  - serializedVersion: 5
+    m_Name: Attack Layer
+    m_StateMachine: {fileID: 1107646096864376230}
+    m_Mask: {fileID: 31900000, guid: ea848f09a694c1646820c92c42ac0a93, type: 2}
+    m_Motions: []
+    m_Behaviours: []
+    m_BlendingMode: 0
+    m_SyncedLayerIndex: -1
+    m_DefaultWeight: 1
+    m_IKPass: 1
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
+  - serializedVersion: 5
+    m_Name: SecondIdle Layer
+    m_StateMachine: {fileID: 1107217442431699014}
+    m_Mask: {fileID: 31900000, guid: ea848f09a694c1646820c92c42ac0a93, type: 2}
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -391,6 +424,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 3
+<<<<<<< HEAD
+  - m_ConditionMode: 6
+    m_ConditionEvent: currentWeaponClass
+    m_EventTreshold: 3
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -577,6 +616,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 0
+<<<<<<< HEAD
+  - m_ConditionMode: 6
+    m_ConditionEvent: currentWeaponClass
+    m_EventTreshold: 0
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -844,6 +889,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: attack
     m_EventTreshold: 0
+<<<<<<< HEAD
+  - m_ConditionMode: 1
+    m_ConditionEvent: attack
+    m_EventTreshold: 0
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102094434502871496}
   m_Solo: 0
@@ -1012,6 +1063,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: attack
     m_EventTreshold: 0
+<<<<<<< HEAD
+  - m_ConditionMode: 1
+    m_ConditionEvent: attack
+    m_EventTreshold: 0
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102103608174774236}
   m_Solo: 0
@@ -1036,6 +1093,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 1
+<<<<<<< HEAD
+  - m_ConditionMode: 6
+    m_ConditionEvent: currentWeaponClass
+    m_EventTreshold: 1
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -1345,6 +1408,12 @@ AnimatorStateTransition:
   - m_ConditionMode: 6
     m_ConditionEvent: currentWeaponClass
     m_EventTreshold: 2
+<<<<<<< HEAD
+  - m_ConditionMode: 6
+    m_ConditionEvent: currentWeaponClass
+    m_EventTreshold: 2
+=======
+>>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
   - m_ConditionMode: 1
     m_ConditionEvent: isInAttackState
     m_EventTreshold: 0
@@ -1552,8 +1621,7 @@ AnimatorState:
   m_Name: shortMeleeAttack
   m_Speed: 1
   m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 1101764331871050636}
+  m_Transitions: [{fileID: 1101764331871050636}]
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -2029,11 +2097,23 @@ AnimatorStateMachine:
     m_State: {fileID: 1102199226175372494}
     m_Position: {x: -36, y: 360, z: 0}
   - serializedVersion: 1
+    m_State: {fileID: 1102236617146415688}
+    m_Position: {x: 408, y: 24, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102199226175372494}
+    m_Position: {x: -36, y: 360, z: 0}
+  - serializedVersion: 1
     m_State: {fileID: 1102797186131138348}
     m_Position: {x: 108, y: 144, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102353691956046470}
     m_Position: {x: 96, y: 252, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102626277573895240}
+    m_Position: {x: 396, y: 144, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102525735871599242}
+    m_Position: {x: 48, y: 456, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102626277573895240}
     m_Position: {x: 396, y: 144, z: 0}
@@ -2061,6 +2141,12 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 1102663615420690456}
     m_Position: {x: 432, y: 48, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102135923137603144}
+    m_Position: {x: 432, y: 180, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 1102609002276212602}
+    m_Position: {x: 432, y: -72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102135923137603144}
     m_Position: {x: 432, y: 180, z: 0}
