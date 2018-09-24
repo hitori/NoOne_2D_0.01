@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -18,7 +18,7 @@ MonoBehaviour:
   crafting: 0
   currentWeaponClass: 4
   isItTwoHandedWeapon: 1
-  itemModel: {fileID: 1273591880444820, guid: fe60944e6447b8347bcfcc70c4a2debe, type: 2}
+  itemModel: {fileID: 1763716809191398, guid: fe60944e6447b8347bcfcc70c4a2debe, type: 2}
   firerate: 10
   damage: 10
   maxAmmo: 150
@@ -26,11 +26,5 @@ MonoBehaviour:
   reloadTime: 5
   attackSound: {fileID: 8300000, guid: d3340e1165a22334cb65a542d5384bbb, type: 3}
   reloadSound: {fileID: 8300000, guid: b4fbaddaac6ec26428b0706c4b54a33b, type: 3}
-  muzzleFlashObject: {fileID: 1272230799060928, guid: a9939accabf6214499ab679937486f50,
-    type: 2}
-  noAmmoSound: {fileID: 8300000, guid: f84d21e32e6a3e246a830bfc7fb20d50, type: 3}
-  gunBurrel: {fileID: 4498109993376482, guid: fe60944e6447b8347bcfcc70c4a2debe, type: 2}
-  rHandPos: {x: 0.185, y: -0.01, z: 0.196}
-  rHanRot: {x: -2.48, y: -14.982, z: -88.561}
-  lHand_target: {fileID: 4424975312639490, guid: fe60944e6447b8347bcfcc70c4a2debe,
+  muzzleFlash: {fileID: 198755436673160698, guid: fe60944e6447b8347bcfcc70c4a2debe,
     type: 2}

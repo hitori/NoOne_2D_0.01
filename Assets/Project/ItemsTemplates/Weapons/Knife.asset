@@ -3,7 +3,7 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -14,24 +14,8 @@ MonoBehaviour:
   name: Knife
   description: Ordinary kitchen knife
   icon: {fileID: 21300000, guid: 78b52799cf1648c4ba0c3f880ffc3a21, type: 3}
+  currentClass: 1
+  crafting: 0
+  currentWeaponClass: 1
   isItTwoHandedWeapon: 0
   itemModel: {fileID: 1527858997506296, guid: 551e19cc9f16aa9438402f66d63de02f, type: 2}
-  firerate: 0
-  damage: 0
-  maxAmmo: 0
-  ammoClipCapacity: 0
-  reloadTime: 0
-  attackSound: {fileID: 0}
-  reloadSound: {fileID: 0}
-  muzzleFlashObject: {fileID: 0}
-  noAmmoSound: {fileID: 0}
-  gunBurrel: {fileID: 0}
-  rHandPos: {x: 0, y: 0, z: 0}
-  rHanRot: {x: 0, y: 0, z: 0}
-  lHand_target: {fileID: 0}
-  currentClass: 1
-  currentConsumableClass: 0
-  currentEquipmentClass: 0
-  currentAmmoClass: 0
-  currentKeyClass: 0
-  currentWeaponClass: 1

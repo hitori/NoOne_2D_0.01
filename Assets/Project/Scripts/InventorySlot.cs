@@ -45,7 +45,7 @@ public class InventorySlot : MonoBehaviour {
         rightClickMenu.SetActive(false);
         if (item != null)
         {
-            item.Use();
+            item.LeftButtonClickMain();
             rightClickMenu.SetActive(false);
         }
     }

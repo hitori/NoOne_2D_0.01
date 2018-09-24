@@ -42,6 +42,7 @@ InputManager:
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
+<<<<<<< HEAD
     positiveButton: 
 <<<<<<< HEAD
     altNegativeButton: 
@@ -62,6 +63,9 @@ InputManager:
     positiveButton: 
 =======
 >>>>>>> 60e53bddd90d04db9003ecec1dec4aaa1da105b7
+=======
+    positiveButton: left ctrl
+>>>>>>> parent of e2b0167... test
     altNegativeButton: 
     altPositiveButton: mouse 0
     gravity: 1000

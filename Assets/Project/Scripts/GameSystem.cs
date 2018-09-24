@@ -15,7 +15,7 @@ public class GameSystem : MonoBehaviour {
 
     private void Update()
     {
-        if(inventoryUI.inventoryWindow.activeSelf || WeaponManager.instance.currentWeaponIndex == 0)
+        if(inventoryUI.inventoryWindow.activeSelf || inventory.currentWeaponIndex == 0)
         {
             Cursor.SetCursor(cursorWithoutWeapon, new Vector2(16, 16), CursorMode.Auto);
         }
